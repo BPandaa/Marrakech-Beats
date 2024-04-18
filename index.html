@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <!-- CSS -->
+     <link rel="stylesheet" href="style.css">
+
+     <!-- Fav Icon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+     <link rel="manifest" href="/site.webmanifest">
+
+     <!-- Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Lofi | Beats</title>
+</head>
+<body class="page">
+    <div class="wrapper">
+        <div class="pomodoro-container">
+            <button id="pomodoro-start">Start</button>
+            <button id="pomodoro-stop">Stop</button>
+            <span id="pomodoro-time">25:00</span>
+        </div>
+
+
+        <div class="music-container">
+        <div class="top-bar">
+            <span><bold>By Badr Adnani</bold></span>
+            <div class="dark-mode">
+                <a href="https://www.instagram.com/bpanda_1/" class="instagram-link" target=”_blank”>
+                    <i class="fa fa-instagram" style="font-size:48px" ></i>
+                </a>
+               <!--  <i class='bx bx-moon' ></i>
+                <i class='bx bxs-moon'></i>-->
+            </div>
+        </div>
+         <div class="img-area">
+            <img src="./img/bluemoon.jpg" alt=""> 
+        </div>
+        <div class="song-details">
+            <p class="name"></p>
+            <p class="artist"></p>
+        </div>
+        <div class="progress-area">
+            <div class="progress-bar"></div>
+            <div class="timer">
+                <span class="current">0:00</span>
+                <span class="duration"></span>
+            </div>
+            <audio id="main-audio" src=""></audio>
+        </div>
+        <div class="controls">
+            <i id="repeat-plist" class="material-icons" title="Playlist Loop">repeat</i>
+            <i id="prev" class='bx bx-skip-previous'></i>
+            <div class="play-pause">
+                <i class='bx bx-play'></i>
+            </div>
+            <i id="next" class='bx bx-skip-next'></i>
+            <i id="more-music" class='bx bxs-playlist'></i>
+        </div>
+        <div class="music-list">
+            <div class="header">
+                <div class="row">
+                    <i id="more-music" class='bx bxs-playlist'></i>
+                    <span class="title-music">List of Music</span>
+                </div>
+                <i id="close" class='bx bx-x'></i>
+            </div>
+            <ul>
+                
+            </ul>
+        </div></div>
+        <div class="todo-container">
+            <input type="text" id="new-task" placeholder="Add new task...">
+            <button id="add-task">Add</button>
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+    
+    </div>
+
+     <!-- JavaScript -->
+     <script src="javascript/music-list.js"></script>
+     <script src="javascript/script.js"></script>
+</body>
+</html>
