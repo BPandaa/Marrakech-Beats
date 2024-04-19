@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initToDoList();
 });
 
-// Seleciona todas as tags ou elementos necessários
 const wrapper = document.querySelector(".wrapper"),
 musicImage = wrapper.querySelector(".img-area img"),
 musicName = wrapper.querySelector(".song-details .name"),
@@ -18,15 +17,21 @@ musicList = wrapper.querySelector(".music-list"),
 showMoreButton = wrapper.querySelector("#more-music"),
 hideMusicButton = musicList.querySelector("#close");
 
-// Carrega música aleatória na atualização da página
+
 let musicIndex = Math.floor((Math.random() * allMusic.length) + 1);
 
 window.addEventListener("load", ()=> {
-    loadMusic(musicIndex); // Chama a função loadMusic() quando a janela é carregada
+    loadMusic(musicIndex); 
     playingNow();
 });
 
-// Funçãp que realiza o carregamento da Música
+function onclickBreak(){
+    console.log("here")
+    var card = document.getElementById("carddd")
+    card.classList.add("animation")
+}
+
+
 function loadMusic(indexNumb) {
     musicName.innerText = allMusic[indexNumb - 1].name;
     musicArtist.innerText = allMusic[indexNumb - 1].artist;
@@ -34,36 +39,36 @@ function loadMusic(indexNumb) {
     mainAudio.src = `music/${allMusic[indexNumb - 1].src}.mp3`;
 }
 
-// Função Play
+
 function playMusic() {
     wrapper.classList.add("paused");
     playPauseButton.innerHTML = "<i class='bx bx-pause'></i>";
     mainAudio.play();
 }
 
-// Função Pause
+
 function pauseMusic() {
     wrapper.classList.remove("paused");
     playPauseButton.innerHTML = "<i class='bx bx-play'></i>";
     mainAudio.pause();
 }
 
-// Função Previous (Anterior)
+
 function previousMusic() {
-    // Decrementa -1 no index da música
+   
     musicIndex--;
-    // Se musicIndex for menor que 1, então musicIndex terá o comprimento do array para que a última música seja reproduzida
+  
     musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex;
     loadMusic(musicIndex);
     playMusic();
     playingNow();
 }
 
-// Função Next (Próximo)
+
 function nextMusic() {
-    // Incrementa +1 no index da música
+    
     musicIndex++;
-    // Se musicIndex for maior do que o comprimento do total de músicas, então a musicIndex voltará para a primeira música
+
     musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
     loadMusic(musicIndex);
     playMusic();
@@ -259,25 +264,38 @@ function clicked(element) {
 }
 
 // Dark Mode
-//const darkMode = document.querySelector('.dark-mode'),
-  //  body = document.querySelector('.page');
+const darkMode = document.querySelector('.dark-mode'),
+   body = document.querySelector('.page');
 
-//darkMode.onclick = () => {
-  //  body.classList.toggle('is-dark'); }
+darkMode.onclick = () => {
+   body.classList.toggle('is-dark'); }
 
 
-function initPomodoro() {
-    const startButton = document.getElementById('pomodoro-start');
-    const stopButton = document.getElementById('pomodoro-stop');
+   document.addEventListener("DOMContentLoaded", function() {
+    const card = document.getElementById('carddd');
+    const startButton = document.getElementById('start');
+    const stopButton = document.querySelectorAll('#stop'); // Since you have two stop buttons
+    const resetButton = document.getElementById('reset');
+    const flipButton = document.getElementById('flip');
+    const goBackButton = document.getElementById('GoBack');
     const timerDisplay = document.getElementById('pomodoro-time');
-    let isRunning = false;
+    const breakTimeDisplay = document.getElementById('break-time');
     let pomodoroTimer;
+    let breakTimer;
+    let isRunning = false;
     let currentTime = 1500; // 25 minutes
+    let breakTime = 300; // 5 minutes
 
     function updateTimerDisplay(timeInSeconds) {
         const minutes = Math.floor(timeInSeconds / 60);
         const seconds = timeInSeconds % 60;
-        timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    function updateBreakTimeDisplay(timeInSeconds) {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        breakTimeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
     startButton.addEventListener('click', function() {
@@ -297,16 +315,50 @@ function initPomodoro() {
         }
     });
 
-    stopButton.addEventListener('click', function() {
+    resetButton.addEventListener('click', function() {
         clearInterval(pomodoroTimer);
-        isRunning = false;
-        currentTime = 1500; // Reset to 25 minutes
+        currentTime = 1500;
         updateTimerDisplay(currentTime);
+        isRunning = false;
     });
 
-    // Initially set timer
+    stopButton.forEach(button => button.addEventListener('click', function() {
+        clearInterval(pomodoroTimer);
+        clearInterval(breakTimer);
+        isRunning = false;
+    }));
+
+    flipButton.addEventListener('click', function() {
+        card.style.transform = "rotateY(180deg)";
+        startBreak();
+    });
+
+    goBackButton.addEventListener('click', function() {
+        card.style.transform = "rotateY(0deg)";
+        clearInterval(breakTimer);
+        updateBreakTimeDisplay(300); // Reset break time display
+    });
+
+    function startBreak() {
+        clearInterval(pomodoroTimer);
+        breakTime = 300; // Reset break time
+        breakTimer = setInterval(function() {
+            breakTime -= 1;
+            updateBreakTimeDisplay(breakTime);
+            if (breakTime <= 0) {
+                clearInterval(breakTimer);
+                alert("Break time is over! Back to work!");
+                breakTime = 300; // Reset break time
+                updateBreakTimeDisplay(breakTime);
+            }
+        }, 1000);
+    }
+
+    // Set initial timer displays
     updateTimerDisplay(currentTime);
-}
+    updateBreakTimeDisplay(breakTime);
+});
+
 
 function initToDoList() {
     const addButton = document.getElementById('add-task');
