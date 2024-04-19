@@ -26,21 +26,40 @@
 <body class="page">
     <div class="wrapper">
         <div class="pomodoro-container">
-            <button id="pomodoro-start">Start</button>
-            <button id="pomodoro-stop">Stop</button>
-            <span id="pomodoro-time">25:00</span>
+            <div class="thecard" id="carddd">
+                <div class="thefront">
+                    <h1>Pomodoro Timer</h1>
+                    <p>Focus for 25 minutes!</p>
+                    <button id="start">Start</button>
+                    <button id="stop">Stop</button>
+                    <button id="reset">Reset</button>
+                    <button id="flip" onclick="onclickBreak()">Break</button>
+                    <span id="pomodoro-time">25:00</span>
+                </div>
+                <div class="theback" >
+                    <h1>Take a Break!</h1>
+                    <p>Enjoy your 5-minute break!</p>
+                    <span id="break-time">05:00</span>
+                    <button id="stop">Stop</button>
+                    <button id="GoBack" onclick="onclickBack()">Go Back</button>
+                </div>
+            </div>
         </div>
 
 
         <div class="music-container">
         <div class="top-bar">
-            <span><bold>By Badr Adnani</bold></span>
             <div class="dark-mode">
+                <i class='bx bx-moon' ></i>
+            <i class='bx bxs-moon'></i>
+            </div>
+            <span><bold>By Badr Adnani</bold></span>
+           
+            
+            <div class="mode">
                 <a href="https://www.instagram.com/bpanda_1/" class="instagram-link" target=”_blank”>
                     <i class="fa fa-instagram" style="font-size:48px" ></i>
                 </a>
-               <!--  <i class='bx bx-moon' ></i>
-                <i class='bx bxs-moon'></i>-->
             </div>
         </div>
          <div class="img-area">
@@ -91,5 +110,8 @@
      <!-- JavaScript -->
      <script src="javascript/music-list.js"></script>
      <script src="javascript/script.js"></script>
-</body>
+</body> 
+
+
+
 </html>
