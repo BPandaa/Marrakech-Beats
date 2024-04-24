@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+body  {
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+    background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+.is-dark {
+    background-image: url('https://images.pexels.com/photos/6501751/pexels-photo-6501751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --main-color: #4CA1AF;
+    --secundary-color: #49627a;
+    --light-black: #515C6F;
+    --white-color: #ffffff;
+    --dark-white: #cecaca;
+    --main-shadow: rgba(0, 0, 0, 0.15);
+    --white-mode: #e6e6e6;
+    --dark-background: #333;
+    --dark-element-background: #333;
+    --text-color-light: #ffffff;
+    --text-color-dark: #333;
+    --background-color: #ffffff; /* Added for background toggling */
+    
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color-dark); /* Ensure text colors are also toggled */
+    
+
+}
+
+.wrapper, .pomodoro-container, .music-container, .todo-container {
+    background-color: var(--element-background);
+}
+
+.top-bar i, .top-bar span, .song-details, .progress-area span, .controls i{
+    color: var(--text-color-light);
+}
+
+
+
+body, html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Hide scrollbars */
+   
+}
+
+
+/* Hide scrollbar for larger devices */
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 20px;
+    gap: 20px;
+  
+}
+
+/* Dark mode styles for the task list */
+.is-dark .todo-container {
+    background-color: var(--dark-element-background); /* Dark background for the container */
+    color: var(--text-color-light); /* Light text color for visibility */
+}
+
+.is-dark .time{
+
+background-color: #555;
+
+
+}
+.is-dark body{
+
+    background-image: url('https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;          
+    
+}
+
+.is-dark ul#task-list li {
+    background-color: #555; /* Darker background for list items */
+    color: #fff; /* White text color for list items */
+}
+
+/* Dark mode styles for the break view */
+.is-dark .theback {
+    background-color: var(--dark-element-background); /* Dark background for the break section */
+    color: var(--text-color-light); /* Light text for visibility */
+}
+
+.is-dark .thefront {
+    background-color: var(--dark-element-background); /* Dark background for the break section */
+    color: var(--text-color-light); /* Light text for visibility */
+}
+
+.is-dark .theback button {
+    background: var(--main-color); /* Stylish button background */
+    color: var(--text-color-light); /* Ensure button text is visible */
+}
+
+/* Ensure buttons have a hovering effect that suits dark mode */
+.is-dark .theback button:hover {
+    background-color: var(--secundary-color); /* Darker shade for hover effect */
+}
+
+/* Adjusting text colors in the back card */
+.is-dark .theback h1,
+.is-dark .theback p,
+.is-dark .theback span,
+.is-dark .thefront span {
+    color: var(--text-color-light);
+}
+
+
+.pomodoro-container, .music-container, .todo-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+   
+}
+
+
+
+
+.pomodoro-container .thefront,
+.pomodoro-container .theback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.pomodoro-container button,
+.pomodoro-container span {
+    width: 100%; /* Ensure full width to maintain alignment */
+    text-align: center;
+    padding: 8px 0; /* Sufficient padding for touch targets */
+    margin: 5px 0; /* Margin to separate buttons */
+    background: linear-gradient(135deg, var(--main-color), var(--secundary-color));
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pomodoro-container #pomodoro-time,
+.pomodoro-container #break-time {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .pomodoro-container {
+        padding: 15px;
+        min-width: 90%; /* Allows the container to adjust to the screen size */
+    }
+
+    .pomodoro-container button {
+        font-size: 0.9em; /* Adjust font size for smaller screens */
+    }
+
+    .pomodoro-container #pomodoro-time,
+    .pomodoro-container #break-time {
+        font-size: 1.5em; /* Reduce font size to fit smaller screens */
+    }
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    .pomodoro-container, .music-container, .todo-container {
+        min-width: 100%;  /* Full width on smaller screens */
+        padding: 10px;    /* Smaller padding */
+    }
+    /* Enable custom scrollbar for mobile devices */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--dark-element-background);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--secundary-color);
+        border-radius: 10px;
+    }
+}
+
+
+
+.wrapper i {
+    cursor: pointer;
+}
+
+.top-bar, .progress-area .timer, .controls, .music-list .header, .music-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-bar i {
+    font-size: 2.3rem;
+    color: var(--light-black);
+}
+
+.top-bar .bx {
+    font-size: 1.3rem;
+    color: var(--light-black);
+}
+
+.top-bar span {
+    font-size: 18px;
+    color: var(--light-black);
+    text-align: center;
+}
+
+.img-area {
+    width: 100%;
+    height: 256px;
+
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px var(--light-shadow);
+}
+
+.img-area img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.song-details {
+    text-align: center;
+    color: var(--light-black);
+    margin: 30px 0;
+}
+
+.song-details .name {
+    font-size: 21px;
+}
+
+.song-details .artist {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* Progress Area */
+.progress-area {
+    width: 100%;
+    height: 6px;
+
+    background: #e6e6e6;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.progress-area .progress-bar {
+    width: 0%;
+    height: inherit;
+    position: relative;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--main-color) 0%, var(--secundary-color) 100%);
+}
+
+.progress-bar::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: inherit;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    background: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.progress-area:hover .progress-bar::before {
+    opacity: 1;
+}
+
+.progress-area .timer {
+    margin-top: 2px;
+}
+
+.timer span {
+    font-size: 13px;
+    color: var(--light-black);
+    text-align: center;
+}
+
+/* Icons Controls */
+.controls {
+    margin: 40px 0 5px 0;
+}
+
+.controls i {
+    font-size: 30px;
+    user-select: none;
+    background: linear-gradient(var(--main-color) 0%, var(--secundary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls i:nth-child(2),
+.controls i:nth-child(4) {
+    font-size: 43px;
+}
+
+.controls #prev {
+    margin-right: -13px;
+}
+
+.controls #next {
+    margin-left: -13px;
+}
+
+.controls .play-pause {
+    width: 54px;
+    height: 54px;
+
+    background: linear-gradient(var(--white-color) 0%, var(--dark-white) 100%);
+    box-shadow: 0px 0px 5px var(--main-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-pause::before {
+    width: 40px;
+    height: 40px;
+
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    background: linear-gradient(var(--main-color) 0%, var(--secundary-color) 100%);
+}
+
+.play-pause i {
+    width: 40px;
+    height: 40px;
+
+    line-height: 40px;
+    text-align: center;
+
+    position: relative;
+    background: inherit;
+    border-radius: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Music List */
+.music-list {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -55%;
+    opacity: 0;
+    pointer-events: none;
+    padding: 15px 30px;
+    border-radius: 15px;
+    background: var(--white-color);
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.14s ease;
+}
+
+/* Classe Utilizada no JS */
+.music-list.show {
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.music-list .header .row {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    color: var(--light-black);
+}
+
+.header .row i {
+    cursor: default;
+}
+
+.header .row span {
+    margin-left: 5px;
+}
+
+.header #close {
+    font-size: 22px;
+    color: var(--light-black);
+}
+
+.music-list ul {
+    margin: 10px 0;
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.music-list ul::-webkit-scrollbar {
+    width: 0px;
+}
+
+.music-list ul li {
+    list-style: none;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    color: var(--light-black);
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+}
+
+.music-list ul li:last-child {
+    border-bottom: 0px;
+}
+
+.music-list ul li .row span {
+    font-size: 17px;
+}
+
+ul li .row p {
+    opacity: 0.9;
+}
+
+ul li .audio-duration {
+    font-size: 16px;
+}
+
+ul li.playing {
+    color: var(--main-color);
+    pointer-events: none;
+}
+
+/* Dark Mode Button */
+.dark-mode {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background: #f8f8f8;
+    border-radius: 50%;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.dark-mode .bx {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+}
+
+.bx-moon {
+    color: var(--main-color);
+}
+
+.bxs-moon {
+    color: var(--white-color);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.is-dark {
+    --white-color: var(--dark-background);
+    --light-black: var(--text-color-light);
+    --text-color: var(--text-color-light);
+}
+
+
+
+
+
+.is-dark .dark-mode {
+    background: #313131;
+}
+
+
+.is-dark .bx-moon {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.is-dark .bxs-moon {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+.is-dark .controls .play-pause {
+    background: var(--dark-white);
+}
+
+
+
+
+
+
+
+.pomodoro-container button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-image: linear-gradient(135deg, #4CA1AF, #4CA1AF);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.pomodoro-container button:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.pomodoro-container #pomodoro-time {
+    display: block;
+    font-size: 2em;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* To-Do List */
+.todo-container input[type="text"] {
+    padding: 10px;
+    width: calc(100% - 22px); /* accounting for padding and border */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.todo-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CA1AF;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.todo-container button:hover {
+    background-color: #3d9ead;
+}
+
+ul#task-list {
+    list-style: none;
+}
+
+ul#task-list li {
+    background: #eee;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+ul#task-list li:hover {
+    background: #ddd;
+}
+
+.instagram-link {
+    text-decoration: none; /* Removes underline */
+    color: inherit;      /* Inherits text color from parent, or set your own color */
+    
+}
+
+.add-task:hover{
+    transform: rotateY(180deg);
+  
+    
+}
+
+.thecard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+
+  }
+  .animation {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+
+  }
+
+  .Back {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+
+  }
+  
+  .thefront, .theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  
+  .theback {
+    background-color: #f8f8f8;
+    transform: rotateY(180deg);
+  }
+
+  .sortable-ghost {
+    background-color: #f0f0f0; /* Light grey background for the draggable placeholder */
+    border: 1px dashed #ccc; /* Dashed border for the placeholder */
+}
