@@ -22,7 +22,9 @@ function initPomodoro() {
     startButton.addEventListener('click', startPomodoro);
     stopPomodoroButton.addEventListener('click', stopPomodoro);
     resetButton.addEventListener('click', resetPomodoro);
-    flipButton.addEventListener('click', startBreakAutomatically);
+    flipButton.addEventListener('click', () => {
+        if (!breakTimer) startBreakAutomatically();
+    });
     stopBreakButton.addEventListener('click', stopBreak);
     goBackButton.addEventListener('click', returnToPomodoroAutomatically);
 }
@@ -30,22 +32,27 @@ function initPomodoro() {
 function startPomodoro() {
     if (!isRunning) {
         isRunning = true;
-        pomodoroTimer = setInterval(updatePomodoroTimer, 1000);
+        if (!pomodoroTimer) {
+            pomodoroTimer = setInterval(updatePomodoroTimer, 1000);
+        }
         updateTimerDisplay(currentTime, frontTimerDisplay);
     }
 }
 
 function stopPomodoro() {
     clearInterval(pomodoroTimer);
+    pomodoroTimer = null;
     isRunning = false;
 }
 
 function stopBreak() {
     clearInterval(breakTimer);
+    breakTimer = null;
+    updateTimerDisplay(breakTime, backTimerDisplay); // Reset the display after stopping
 }
 
 function resetPomodoro() {
-    stopPomodoro(); // Use stopPomodoro to clear the interval
+    stopPomodoro(); 
     currentTime = 1500; // Reset to 25 minutes
     breakTime = 300; // Reset to 5 minutes
     updateTimerDisplay(currentTime, frontTimerDisplay);
@@ -57,24 +64,29 @@ function updatePomodoroTimer() {
     updateTimerDisplay(currentTime, frontTimerDisplay);
     if (currentTime <= 0) {
         clearInterval(pomodoroTimer);
-        startBreakAutomatically();
+        pomodoroTimer = null;
+        // Optionally start break automatically or leave for manual start
     }
 }
 
 function startBreakAutomatically() {
-    card.classList.add("animation");
-    breakTimer = setInterval(() => {
-        breakTime--;
-        updateTimerDisplay(breakTime, backTimerDisplay);
-        if (breakTime <= 0) {
-            clearInterval(breakTimer);
-            returnToPomodoroAutomatically();
-        }
-    }, 1000);
+    if (!breakTimer) {
+        card.classList.add("animation");
+        breakTimer = setInterval(() => {
+            breakTime--;
+            updateTimerDisplay(breakTime, backTimerDisplay);
+            if (breakTime <= 0) {
+                clearInterval(breakTimer);
+                breakTimer = null;
+                returnToPomodoroAutomatically();
+            }
+        }, 1000);
+    }
 }
 
 function returnToPomodoroAutomatically() {
     card.classList.remove("animation");
+    stopBreak();
     resetPomodoro();
     startPomodoro();
 }

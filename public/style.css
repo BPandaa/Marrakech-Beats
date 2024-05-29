@@ -31,7 +31,6 @@ from {background-position: top;background-size:3000px; }
 to {background-position: -100px 0px;background-size:2750px;}
 
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -39,6 +38,9 @@ to {background-position: -100px 0px;background-size:2750px;}
     font-family: "Poppins", sans-serif;
 }
 
+input {
+    width: 100%;
+  }
 
 *::before,
 *::after {
@@ -175,6 +177,11 @@ background-color: #555;
     color: var(--text-color-light);
 }
 
+#carddd{
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+
+}
 
 .pomodoro-container, .music-container, .todo-container {
     flex: 1;
@@ -200,7 +207,7 @@ background-color: #555;
 
 .pomodoro-container button,
 .pomodoro-container span {
-    width: 100%; /* Ensure full width to maintain alignment */
+    width: 90%; /* Ensure full width to maintain alignment */
     text-align: center;
     padding: 8px 0; /* Sufficient padding for touch targets */
     margin: 5px 0; /* Margin to separate buttons */
@@ -668,10 +675,11 @@ ul#task-list li:hover {
   }
   .animation {
     transform: rotateY(180deg);
-    transform-style: preserve-3d;
-    transition: all 0.8s ease;
+    
+    
 
   }
+
 
   .Back {
     transform: rotateY(180deg);
@@ -681,7 +689,7 @@ ul#task-list li:hover {
   }
   
   .thefront, .theback {
-    position: absolute;
+ 
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
@@ -696,7 +704,7 @@ ul#task-list li:hover {
   
   .theback {
     background-color: #f8f8f8;
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateY(-100%) ;
   }
 
   .sortable-ghost {
